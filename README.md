@@ -29,12 +29,12 @@ btype("B-Type"):::purple
 utype("U-Type"):::purple
 jtype("J-Type"):::purple
 
-rtype --> r("register-register operations")
-itype --> i("short immediates and loads")
-stype --> s("sotres")
-btype --> b("conditional branches")
-utype --> u("long immediates")
-jtype --> j("unconditional jumps")
+rtype --> r("register-register operations"):::yellow
+itype --> i("short immediates and loads"):::yellow
+stype --> s("sotres"):::yellow
+btype --> b("conditional branches"):::yellow
+utype --> u("long immediates"):::yellow
+jtype --> j("unconditional jumps"):::yellow
 
 
 base_type --> rtype
@@ -45,33 +45,253 @@ base_type --> utype
 base_type --> jtype
 
 classDef pink 1,fill:#FFCCCC,stroke:#333, color: #fff, font-weight:bold;
+classDef pale_pink fill:#E1BEE7,color:#000000;
 classDef green fill: #696,color: #fff,font-weight: bold;
 classDef purple fill:#969,stroke:#333, font-weight: bold;
 classDef error fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
 classDef coral fill:#f9f,stroke:#333,stroke-width:4px;
 classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+classDef yellow fill:#FFF9C4,color:#000000;
 ```
 
 ### RISC-V instruction formats
 
+|    code     | desc                            |
+| :---------: | ------------------------------- |
+|  `opcode`   | `O`peration `C`ode              |
+|    `rd`     | `D`estination`R`egister         |
+|  `funct3`   | `FUNCT`ion with `3` bits        |
+|    `rs1`    | `S`ource `R`egister `1`         |
+| `imm[12:5]` | `imm`ediate bit `12` to bit `5` |
+
 ```mermaid
 ---
-title: "R-type"
+title: RISC-V
 config:
-    packet: #with default value
-        rowHeight: 32
-        bitWidth: 32
-        bitsPerRow: 32
-        showBits: true
-        paddingX: 5
+    block:
+        padding : 10
+        font_size : 20
 ---
-packet-beta
+block-beta
 
-0-6: "opcode"
-7-11: "rd"
-12-14: "funct3"
-15-19: "rs1"
-20-24: "rs2"
-25-31: "funct7"
+columns 35
+31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0 type["tp"]:3
+
+block:g_1_1:7
+    l_1_1("funct7")
+end
+block:g_1_2:5
+    l_1_2("rs2")
+end
+block:g_1_3:5
+    l_1_3("rs1")
+end
+block:g_1_4:3
+    l_1_4("funct3")
+end
+block:g_1_5:5
+    l_1_5("rd")
+end
+block:g_1_6:7
+    l_1_6("opcode")
+end
+block:g_1_7:3
+    l_1_7("R-type")
+end
+
+block:g_2_1:12
+    l_2_1("[11:0]")
+end
+block:g_2_2:5
+    l_2_2("rs1")
+end
+block:g_2_3:3
+    l_2_3("funct3")
+end
+block:g_2_4:5
+    l_2_4("rd")
+end
+block:g_2_5:7
+    l_2_5("opcode")
+end
+block:g_2_7:3
+    l_2_7("I-type")
+end
+
+block:g_3_1:7
+    l_3_1("[11:5]")
+end
+block:g_3_2:5
+    l_3_2("rs2")
+end
+block:g_3_3:5
+    l_3_3("rs1")
+end
+block:g_3_4:3
+    l_3_4("funct3")
+end
+block:g_3_5:5
+    l_3_5("[4:0]")
+end
+block:g_3_6:7
+    l_3_6("opcode")
+end
+block:g_3_7:3
+    l_3_7("S-type")
+end
+
+block:g_4_1:1
+    l_4_1("12")
+end
+block:g_4_9:6
+    l_4_9("[10:5]")
+end
+block:g_4_2:5
+    l_4_2("rs2")
+end
+block:g_4_3:5
+    l_4_3("rs1")
+end
+block:g_4_4:3
+    l_4_4("funct3")
+end
+block:g_4_5:4
+    l_4_5("[4:1]")
+end
+block:g_4_8:1
+    l_4_8("11")
+end
+block:g_4_6:7
+    l_4_6("opcode")
+end
+block:g_4_7:3
+    l_4_7("B-type")
+end
+
+block:g_5_1:20
+    l_5_1("[31:12]")
+end
+block:g_5_2:5
+    l_5_2("rd")
+end
+block:g_5_3:7
+    l_5_3("opcode")
+end
+block:g_5_4:3
+    l_5_4("U-type")
+end
+
+block:g_6_1:1
+    l_6_1("20")
+end
+block:g_6_5:10
+    l_6_5("[10:1]")
+end
+block:g_6_6:1
+    l_6_6("11")
+end
+block:g_6_7:8
+    l_6_7("[19:12]")
+end
+block:g_6_2:5
+    l_6_2("rd")
+end
+block:g_6_3:7
+    l_6_3("opcode")
+end
+block:g_6_4:3
+    l_6_4("U-type")
+end
+
+classDef pink 1,fill:#FFCCCC,stroke:#333, color: #fff, font-weight:bold;
+classDef pale_pink fill:#E1BEE7,color:#000000;
+classDef green fill: #696,color: #fff,font-weight: bold;
+classDef purple fill:#969,stroke:#333, font-weight: bold;
+classDef error fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+classDef coral fill:#f9f,stroke:#333,stroke-width:4px;
+classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+classDef yellow fill:#FFF9C4,color:#000000;
+
+class l_1_7 green
+class l_2_7 green
+class l_3_7 green
+class l_4_7 green
+class l_5_4 green
+class l_6_4 green
+
+class l_1_6 error
+class l_2_5 error
+class l_3_6 error
+class l_4_6 error
+class l_5_3 error
+class l_6_3 error
+
+class l_2_1 yellow
+class l_3_1 yellow
+class l_3_1 yellow
+class l_4_1 yellow
+class l_3_5 yellow
+class l_4_5 yellow
+class l_5_1 yellow
+class l_6_1 yellow
+class l_4_9 yellow
+class l_4_8 yellow
+class l_6_5 yellow
+class l_6_6 yellow
+class l_6_7 yellow
+
+class l_1_1 animate
+class l_1_4 animate
+class l_2_3 animate
+class l_3_4 animate
+class l_4_4 animate
+
+class l_1_2 pink
+class l_1_3 pink
+class l_1_5 pink
+class l_2_2 pink
+class l_2_4 pink
+class l_3_2 pink
+class l_3_3 pink
+class l_4_2 pink
+class l_4_3 pink
+class l_5_2 pink
+class l_6_2 pink
+
+
+class 31 green
+class 30 green
+class 29 green
+class 28 green
+class 27 green
+class 26 green
+class 25 green
+class 24 green
+class 23 green
+class 22 green
+class 21 green
+class 20 green
+class 19 green
+class 18 green
+class 17 green
+class 16 green
+class 15 green
+class 14 green
+class 13 green
+class 12 green
+class 11 green
+class 10 green
+class 9 green
+class 8 green
+class 7 green
+class 6 green
+class 5 green
+class 4 green
+class 3 green
+class 2 green
+class 1 green
+class 0 green
+class type green
+
 ```
 
