@@ -356,49 +356,34 @@ block-beta
 columns 35
 31("31") 30("30") 29("29") 28("28") 27("27") 26("26") 25("25") 24("24") 23("23") 22("22") 21("21") 20("20") 19("19") 18("18") 17("17") 16("16") 15("15") 14("14") 13("13") 12("12") 11("11") 10("10") 9("9") 8("8") 7("7") 6("6") 5("5") 4("4") 3("3") 2("2") 1("1") 0("0") type["tp"]:3
 
-block:g_1:7
-    columns 7
-    b0("0"):1
-    b1("0"):1
-    b2("0"):1
-    b3("0"):1
-    b4("0"):1
-    b5("0"):1
-    b6("0"):1
-end
+b0("0"):1
+b1("0"):1
+b2("0"):1
+b3("0"):1
+b4("0"):1
+b5("0"):1
+b6("0"):1
 
-block:g_2:5
-    rs2("rs2")
-end
+rs2("rs2"):5
 
-block:g_3:5
-    rs1("rs1")
-end
+rs1("rs1"):5
 
-block:g_4:3
-    columns 3
-    c0("0"):1
-    c1("0"):1
-    c2("0"):1
-end
+c0("0"):1
+c1("0"):1
+c2("0"):1
 
-block:g_5:5
-    rd("rd")
-end
+rd("rd"):5
 
-block:g_6:7
-    opcode_0("0")
-    opcode_1("1")
-    opcode_2("1")
-    opcode_3("0")
-    opcode_4("0")
-    opcode_5("1")
-    opcode_6("1")
-end
+opcode_0("0")
+opcode_1("1")
+opcode_2("1")
+opcode_3("0")
+opcode_4("0")
+opcode_5("1")
+opcode_6("1")
 
-block:g_7:3
-    add("add")
-end
+add("add"):3
+
 
 classDef pink 1,fill:#FFCCCC,stroke:#333, color: #fff, font-weight:bold;
 classDef pale_pink fill:#E1BEE7,color:#000000;
