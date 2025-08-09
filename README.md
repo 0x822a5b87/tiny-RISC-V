@@ -343,6 +343,11 @@ class type green
 
 #### EXAMPLE
 
+| opcode             | Type   | desc                    |
+| ------------------ | ------ | ----------------------- |
+| `add` rd, rs1, rs2 | R-type | x[rd] = x[rs1] + x[rs2] |
+| `sub` rd, rs1, rs2 | R-type | x[rd] = x[rs1] - x[rs2] |
+
 ```mermaid
 ---
 title: add
@@ -384,6 +389,56 @@ opcode_6("1")
 
 add("add"):3
 
+d0("0"):1
+d1("1"):1
+d2("0"):1
+d3("0"):1
+d4("0"):1
+d5("0"):1
+d6("0"):1
+
+rs3("rs2"):5
+
+rs4("rs1"):5
+
+e0("0"):1
+e1("0"):1
+e2("0"):1
+
+rd1("rd"):5
+
+sub_0("0")
+sub_1("1")
+sub_2("1")
+sub_3("0")
+sub_4("0")
+sub_5("1")
+sub_6("1")
+
+sub("sub"):3
+
+block:g_1_1:7
+    l_1_1("funct7")
+end
+block:g_1_2:5
+    l_1_2("rs2")
+end
+block:g_1_3:5
+    l_1_3("rs1")
+end
+block:g_1_4:3
+    l_1_4("funct3")
+end
+block:g_1_5:5
+    l_1_5("rd")
+end
+block:g_1_6:7
+    l_1_6("opcode")
+end
+block:g_1_7:3
+    l_1_7("R-type")
+end
+
 
 classDef pink 1,fill:#FFCCCC,stroke:#333, color: #fff, font-weight:bold;
 classDef pale_pink fill:#E1BEE7,color:#000000;
@@ -394,16 +449,23 @@ classDef coral fill:#f9f,stroke:#333,stroke-width:4px;
 classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 classDef yellow fill:#FFF9C4,color:#000000;
 
+class g_1_1,g_1_2,g_1_3,g_1_4,g_1_5,g_1_6,g_1_7 yellow
+class l_1_1,l_1_2,l_1_3,l_1_4,l_1_5,l_1_6,l_1_7 pale_pink
 
-class 31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,type,add green
+class 31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,type,add,sub green
 
 class g_1,g_2,g_3,g_4,g_5,g_6,g_7 yellow
 
 class b0,b1,b2,b3,b4,b5,b6,c0,c1,c2 purple
+class d0,d1,d2,d3,d4,d5,d6,e0,e1,e2 purple
 
-class rs2,rs1,rd class l_4_2 pink
+class b1,d1 error
 
-class opcode_0,opcode_1,opcode_2,opcode_3,opcode_4,opcode_5,opcode_6 error
+class rs2,rs1,rd,l_4_2 pink
+class rs3,rs4,rd1 pink
+
+class opcode_0,opcode_1,opcode_2,opcode_3,opcode_4,opcode_5,opcode_6 pale_pink
+class sub_0,sub_1,sub_2,sub_3,sub_4,sub_5,sub_6 pale_pink
 
 ```
 
