@@ -54,6 +54,52 @@ classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25
 classDef yellow fill:#FFF9C4,color:#000000;
 ```
 
+### OTHER TYPES
+
+```mermaid
+---
+title: code
+---
+flowchart LR
+
+arithmetic("simple arithmetic instructions"):::green
+logical("simple arithmetic instructions"):::green
+shift("simple arithmetic instructions"):::green
+
+add("add"):::yellow
+sub("sub"):::yellow
+
+and("and"):::yellow
+or("or"):::yellow
+xor("xor"):::yellow
+
+sll("sll"):::yellow
+srl("srl"):::yellow
+sra("sra"):::yellow
+
+arithmetic --> add
+arithmetic --> sub
+
+logical --> and
+logical --> or
+logical --> xor
+
+shift --> sll
+shift --> srl
+shift --> sra
+
+classDef pink 1,fill:#FFCCCC,stroke:#333, color: #fff, font-weight:bold;
+classDef pale_pink fill:#E1BEE7,color:#000000;
+classDef green fill: #696,color: #fff,font-weight: bold;
+classDef purple fill:#969,stroke:#333, font-weight: bold;
+classDef error fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+classDef coral fill:#f9f,stroke:#333,stroke-width:4px;
+classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+classDef yellow fill:#FFF9C4,color:#000000;
+```
+
+
+
 ### RISC-V instruction formats
 
 |    code     | desc                            |
@@ -292,6 +338,87 @@ class 2 green
 class 1 green
 class 0 green
 class type green
+
+```
+
+#### EXAMPLE
+
+```mermaid
+---
+title: add
+config:
+    block:
+        padding : 10
+        font_size : 20
+---
+block-beta
+
+columns 35
+31("31") 30("30") 29("29") 28("28") 27("27") 26("26") 25("25") 24("24") 23("23") 22("22") 21("21") 20("20") 19("19") 18("18") 17("17") 16("16") 15("15") 14("14") 13("13") 12("12") 11("11") 10("10") 9("9") 8("8") 7("7") 6("6") 5("5") 4("4") 3("3") 2("2") 1("1") 0("0") type["tp"]:3
+
+block:g_1:7
+    columns 7
+    b0("0"):1
+    b1("0"):1
+    b2("0"):1
+    b3("0"):1
+    b4("0"):1
+    b5("0"):1
+    b6("0"):1
+end
+
+block:g_2:5
+    rs2("rs2")
+end
+
+block:g_3:5
+    rs1("rs1")
+end
+
+block:g_4:3
+    columns 3
+    c0("0"):1
+    c1("0"):1
+    c2("0"):1
+end
+
+block:g_5:5
+    rd("rd")
+end
+
+block:g_6:7
+    opcode_0("0")
+    opcode_1("1")
+    opcode_2("1")
+    opcode_3("0")
+    opcode_4("0")
+    opcode_5("1")
+    opcode_6("1")
+end
+
+block:g_7:3
+    add("add")
+end
+
+classDef pink 1,fill:#FFCCCC,stroke:#333, color: #fff, font-weight:bold;
+classDef pale_pink fill:#E1BEE7,color:#000000;
+classDef green fill: #696,color: #fff,font-weight: bold;
+classDef purple fill:#969,stroke:#333, font-weight: bold;
+classDef error fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+classDef coral fill:#f9f,stroke:#333,stroke-width:4px;
+classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+classDef yellow fill:#FFF9C4,color:#000000;
+
+
+class 31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,type,add green
+
+class g_1,g_2,g_3,g_4,g_5,g_6,g_7 yellow
+
+class b0,b1,b2,b3,b4,b5,b6,c0,c1,c2 purple
+
+class rs2,rs1,rd class l_4_2 pink
+
+class opcode_0,opcode_1,opcode_2,opcode_3,opcode_4,opcode_5,opcode_6 error
 
 ```
 
