@@ -343,6 +343,8 @@ class type green
 
 #### EXAMPLE
 
+> **The only difference between `add` and `sub`** is the `funct7` which is used to indicate the `actual operation`
+
 | opcode             | Type   | desc                    |
 | ------------------ | ------ | ----------------------- |
 | `add` rd, rs1, rs2 | R-type | x[rd] = x[rs1] + x[rs2] |
@@ -467,5 +469,70 @@ class rs3,rs4,rd1 pink
 class opcode_0,opcode_1,opcode_2,opcode_3,opcode_4,opcode_5,opcode_6 pale_pink
 class sub_0,sub_1,sub_2,sub_3,sub_4,sub_5,sub_6 pale_pink
 
+```
+
+### *Multiword addition without condition codes*
+
+```mermaid
+---
+title: code
+---
+flowchart LR
+
+number_1("number1"):::pink
+number_2("number2"):::pink
+a0("a0"):::yellow
+a1("a1"):::yellow
+a2("a2"):::green
+a3("a3"):::green
+a4("a4"):::green
+a5("a5"):::green
+a6("a5"):::yellow
+carry-out("carry-out"):::pale_pink
+
+subgraph n1
+    upper_32_1("upper 32 bits")
+    lower_32_1("lower 32 bits")
+end
+
+subgraph n2
+    upper_32_2("upper 32 bits")
+    lower_32_2("lower 32 bits")
+end
+
+number_1 --> n1
+number_2 --> n2
+
+upper_32_1 --> a3
+lower_32_1 --> a2
+upper_32_2 --> a5
+lower_32_2 --> a4
+
+a2 --> a0
+a4 --> a0
+a3 --> a6
+a5 --> a6
+
+a2 --> carry-out
+a0 --> carry-out
+
+
+classDef pink 1,fill:#FFCCCC,stroke:#333, color: #fff, font-weight:bold;
+classDef pale_pink fill:#E1BEE7,color:#000000;
+classDef green fill: #696,color: #fff,font-weight: bold;
+classDef purple fill:#969,stroke:#333, font-weight: bold;
+classDef error fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+classDef coral fill:#f9f,stroke:#333,stroke-width:4px;
+classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+classDef yellow fill:#FFF9C4,color:#000000;
+```
+
+
+
+```assembly
+add a0,a2,a4 # add lower 32 bits: a0 = a2 + a4
+sltu a2,a0,a2 # a2’ = 1 if (a2+a4) < a2, a2’ = 0 otherwise
+add a5,a3,a5 # add upper 32 bits: a5 = a3 + a5
+add a1,a2,a5 # add carry-out from lower 32 bits
 ```
 
