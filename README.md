@@ -10,7 +10,7 @@ Recording the learning process of RISC-V
 
 ### BASE REPRESENTATION
 
-$\underline{s}et~\underline{l}ess~\underline{t}han\Biggl\{\underline{\overline{i}}mmediate\Biggl\}\Biggl\{\underline{\overline{u}}nsigned\Biggl\}$, this represents four different instructions: `slt`, `slti`, `sltu`, `sltiu`.
+$\underline{s}et~\underline{l}ess~\underline{t}han\{\underline{\overline{i}}mmediate\}\{\underline{\overline{u}}nsigned\}$, this represents four different instructions: `slt`, `slti`, `sltu`, `sltiu`.
 
 ### TYPE
 
