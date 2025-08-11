@@ -98,8 +98,6 @@ classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25
 classDef yellow fill:#FFF9C4,color:#000000;
 ```
 
-
-
 ### RISC-V instruction formats
 
 |    code     | desc                            |
@@ -471,6 +469,8 @@ class sub_0,sub_1,sub_2,sub_3,sub_4,sub_5,sub_6 pale_pink
 
 ```
 
+## ELABORATIONS
+
 ### *Multiword addition without condition codes*
 
 ```mermaid
@@ -534,5 +534,25 @@ add a0,a2,a4 # add lower 32 bits: a0 = a2 + a4
 sltu a2,a0,a2 # a2’ = 1 if (a2+a4) < a2, a2’ = 0 otherwise
 add a5,a3,a5 # add upper 32 bits: a5 = a3 + a5
 add a1,a2,a5 # add carry-out from lower 32 bits
+```
+
+### *Software checking of overflow*
+
+```assembly
+# for unsigned addition
+addu t0, t1, t2;
+bltu t0, t1, overflow;
+
+# For signed addition, if one operand’s sign is known
+addi t0, t1, +imm;
+blt t0, t1, overflow;
+
+# For general signed addition, three additional instructions after the addition are required
+add t0, t1, t2 # t0 = (t1 + t2)
+slti t3, t2, 0 # t3 = (t2 < 0)
+slt t4, t0, t1 # t4 = (t1+t2<t1)
+bne t3, t4, overflow 
+# overflow if (t2<0) && (t1+t2>=t1)
+# 	|| (t2>=0) && (t1+t2<t1)
 ```
 
