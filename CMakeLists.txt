@@ -5,3 +5,4 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(tiny_RISC_V src/02/insertion_sort.c)
 add_executable(tiny_RISC_V src/02/entrance.c)
+

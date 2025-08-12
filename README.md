@@ -31,7 +31,7 @@ jtype("J-Type"):::purple
 
 rtype --> r("register-register operations"):::yellow
 itype --> i("short immediates and loads"):::yellow
-stype --> s("sotres"):::yellow
+stype --> s("stores"):::yellow
 btype --> b("conditional branches"):::yellow
 utype --> u("long immediates"):::yellow
 jtype --> j("unconditional jumps"):::yellow
@@ -555,4 +555,71 @@ bne t3, t4, overflow
 # overflow if (t2<0) && (t1+t2>=t1)
 # 	|| (t2>=0) && (t1+t2<t1)
 ```
+
+## RISC-V Assembly Language
+
+### Calling convention
+
+1. Place the arguments where the function can access them.
+2. Jump to the function using `jal`(RV32I).
+3. Acquire local storage resources the function needs, **saving registers as required - this is important, otherwise we will lose track after the function has finished executing**.
+4. Perform the desired task of the function.
+5. Place the function result value where the calling program can access it, restore any registers, and release and local storage resources.
+6. Since a function can be called from several points in a program, return control to the point of origin(usring `ret`).
+
+### Steps of translation from C source  code to a running program
+
+```mermaid
+---
+title: csr(Control Status Register)
+---
+flowchart LR
+
+c("foo.c"):::green
+s("foo.s"):::pink
+o("foo.o"):::pale_pink
+l("lib.o"):::pale_pink
+out("a.out"):::purple
+
+c -->|compiler| s -->|assembler| o
+
+o -->|linker| out
+l -->|linker| out
+
+a("C program"):::green --> b("Assembly"):::pink --> c1("Object"):::pale_pink --> d("Executable"):::purple
+
+classDef pink 1,fill:#FFCCCC,stroke:#333, color: #fff, font-weight:bold;
+classDef pale_pink fill:#E1BEE7,color:#000000;
+classDef green fill: #696,color: #fff,font-weight: bold;
+classDef purple fill:#969,stroke:#333, font-weight: bold;
+classDef error fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+classDef coral fill:#f9f,stroke:#333,stroke-width:4px;
+classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+classDef yellow fill:#FFF9C4,color:#000000;
+```
+
+### Assembler mnemonics for RISC-V
+
+`ABI` stands for **Application Binary Interface**.
+
+| Register | ABI Name | Description                        | Preserved across call? |
+| -------- | -------- | ---------------------------------- | ---------------------- |
+| x0       | zero     | Hard-wired zero                    | -                      |
+| x1       | ra       | Return address                     | No                     |
+| x2       | sp       | Stack Pointer                      | `Yes`                  |
+| x3       | gp       | Global Pointer                     | -                      |
+| x4       | tp       | Thread Pointer                     | -                      |
+| x5       | t0       | Temporaray/alternate link register | No                     |
+| x6-x7    | t1-2     | Temporaries                        | No                     |
+| x8       | s0/fp    | Saved Register/Frame Pointer       | `Yes`                  |
+| x9       | s1       | Saved Register                     | `Yes`                  |
+| x10-11   | A0-1     | Function arguments/return values   | No                     |
+| x12-17   | a2-a7    | Function Arguments                 | No                     |
+| x18-27   | s2-s11   | Saved Register                     | `Yes`                  |
+| f0-7     | ft0–7    | FP temporaries                     | No                     |
+| f8-f9    | fs0-1    | FP saved registers                 | `Yes`                  |
+| f10-11   | fa0-1    | FP arguments/return values         | No                     |
+| f12-17   | fa2-7    | FP arguments                       | No                     |
+| f18-27   | fs2-11   | FP saved register                  | `Yes`                  |
+| f28-31   | ft8-11   | FP temporaries                     | No                     |
 
