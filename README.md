@@ -5,6 +5,56 @@ Recording the learning process of RISC-V
 
 - [box-256](http://box-256.com/)
 - [一个学习汇编的小游戏：BOX-256](https://0x822a5b87.github.io/2025/03/18/%E4%B8%80%E4%B8%AA%E5%AD%A6%E4%B9%A0%E6%B1%87%E7%BC%96%E7%9A%84%E5%B0%8F%E6%B8%B8%E6%88%8F%EF%BC%9ABOX-256/)
+- 《RISC-V体系结构：编程与实践》
+
+## EXTENSION
+
+```mermaid
+---
+title: RISC-V
+---
+flowchart LR
+
+RISC-V("RISC-V"):::green
+
+subgraph rv32i
+	direction LR
+	RV1("RV"):::yellow --> 32_1("32"):::yellow --> i_1("I"):::yellow
+end
+
+subgraph rv64i
+	direction LR
+	RV_2("RV"):::yellow --> 64_1("64"):::yellow --> i_2("I"):::yellow
+end
+
+RV32I("RV31I"):::pale_pink
+RV64I("RV64I"):::pale_pink
+
+RV32G("RV32G - 'G' stans for IMAFD"):::pale_pink
+RV64G("RV64G"):::pale_pink
+
+RISC-V --> RV32I --> rv32i
+RISC-V --> RV64I --> rv64i
+
+RISC-V --> RV32G
+RISC-V --> RV64G
+RISC-V --> others("RV32D, RF64D, ..."):::pale_pink
+
+RV1 --> r1("RISC-V"):::green
+32_1 --> r2("32bit"):::green
+i_1 --> r3("integer"):::green
+
+classDef pink 1,fill:#FFCCCC,stroke:#333, color: #fff, font-weight:bold;
+classDef pale_pink fill:#E1BEE7,color:#000000;
+classDef green fill: #696,color: #fff,font-weight: bold;
+classDef purple fill:#969,stroke:#333, font-weight: bold;
+classDef error fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+classDef coral fill:#f9f,stroke:#333,stroke-width:4px;
+classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+classDef yellow fill:#FFF9C4,color:#000000;
+```
+
+
 
 ## REPRESENTATION
 
