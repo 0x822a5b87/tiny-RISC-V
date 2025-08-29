@@ -1,0 +1,3 @@
+[submodule "labs/riscv_programming_practice"]
+	path = labs/riscv_programming_practice
+	url = https://github.com/0x822a5b87/riscv_programming_practice.git
